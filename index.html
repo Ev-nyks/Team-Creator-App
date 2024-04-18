@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Team Creator ⚽</title>
+</head>
+<body>
+
+
+    <div class="container">
+        <h1>Create Random Teams ⚽</h1>
+  
+        <div class="teams">
+            <div class="team1">
+                <p>Team 1</p>
+                <ul></ul>
+              </div>
+              
+              <div class="team2">
+                <p>Team 2</p>
+                <ul></ul>
+              </div>
+        </div>
+        
+        <div>
+            <button class="btn"><i class="animation"></i>Click for Team Up<i class="animation"></i>
+            </button>
+        </div>
+    </div>
+
+    
+    <script>
+        const shuffleButton = document.querySelector('button');
+        const team1List = document.querySelector('.team1 ul');
+        const team2List = document.querySelector('.team2 ul');
+        
+        shuffleButton.addEventListener('click', () => {
+            let players = ['V', 'Mosaver', 'Modasser', 'Mojtaba', 'Sami', 'Zaki', 'Ahmad', 'Esmail', 'Farzad', 'Yasin', 'Shaker', 'Zaker', 'Hamed', 'Hamze'];
+            const team1 = [];
+            const team2 = [];
+            
+            function creator() {
+                const randIndex = Math.floor(Math.random() * players.length);
+                
+                if (!team1.includes(players[randIndex]) && team1.length < 7) {
+                    team1.push(players[randIndex]);
+                } else {
+                    team2.push(players[randIndex]);
+                }
+                
+                players.splice(randIndex, 1);
+            }
+            
+            while (players.length > 0) {
+                creator();
+            } 
+
+            team1List.innerHTML = team1.map(player => {
+                return `
+                <li>${player}</li>
+                `;
+            }).join('');
+            team2List.innerHTML = team2.map(player => {
+                return `
+                <li>${player}</li>
+                `;
+            }).join('');
+            
+        });
+    </script>
+</body>
+</html>
